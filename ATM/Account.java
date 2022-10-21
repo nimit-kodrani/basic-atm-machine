@@ -134,7 +134,25 @@ public class Account {
 
 	public void getSavingDepositInput() {
 		
-		//yet to be implemented
+		boolean end = false;
+		while (!end) {
+			try {
+				System.out.println("\nCurrent Savings Account Balance: " + moneyFormat.format(savingBalance));
+				System.out.print("\nAmount you want to deposit into your Savings Account: ");
+				double amount = input.nextDouble();
+
+				if ((savingBalance + amount) >= 0 && amount >= 0) {
+					calcSavingDeposit(amount);
+					System.out.println("\nCurrent Savings Account Balance: " + moneyFormat.format(savingBalance));
+					end = true;
+				} else {
+					System.out.println("\nBalance Cannot Be Negative.");
+				}
+			} catch (InputMismatchException e) {
+				System.out.println("\nInvalid Choice.");
+				input.next();
+			}
+		}
 	}
 
 	public void getTransferInput(String accType) {
